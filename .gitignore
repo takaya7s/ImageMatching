@@ -1,0 +1,11 @@
+.vs/
+packages/
+
+ImageMatching/_bk/
+ImageMatching/bin/
+ImageMatching/obj/
+TestImageMatching/_bk/
+TestImageMatching/bin/
+TestImageMatching/obj/
+
+TestImageMatching/images/
