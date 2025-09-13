@@ -16,7 +16,7 @@ namespace ImageMatching
         /// 使用する場面によるが0.7～0.9くらいが妥当？</param>
         /// <param name="mode">TemplateMatchModes</param>
         /// <returns></returns>
-        static public bool IsMatch(Mat matSource, Mat matTarget, double holdLine
+        static public bool IsMatch(Mat matSource, Mat matTarget, double holdLine = 0.9
             , TemplateMatchModes mode = TemplateMatchModes.CCoeffNormed)
         {
             return Match(matSource, matTarget, holdLine, mode).Width >= 0;
@@ -56,7 +56,7 @@ namespace ImageMatching
         /// 使用する場面によるが0.7～0.9くらいが妥当？</param>
         /// <param name="mode">TemplateMatchModes</param>
         /// <returns></returns>
-        static public Rect Match(Mat matSource, Mat matTarget, double holdLine
+        static public Rect Match(Mat matSource, Mat matTarget, double holdLine = 0.9
             , TemplateMatchModes mode = TemplateMatchModes.CCoeffNormed)
         {
             Mat matBuffer = new Mat();
@@ -93,7 +93,7 @@ namespace ImageMatching
         /// 使用する場面によるが0.7～0.9くらいが妥当？</param>
         /// <param name="mode">TemplateMatchModes</param>
         /// <returns></returns>
-        static public Rect Match(Mat matSource, Mat[] matTargets, double holdLine
+        static public Rect Match(Mat matSource, Mat[] matTargets, double holdLine = 0.9
             , TemplateMatchModes mode = TemplateMatchModes.CCoeffNormed)
         {
             Rect rect = new Rect(0, 0, -1, -1);
@@ -132,7 +132,7 @@ namespace ImageMatching
         /// 使用する場面によるが0.7～0.9くらいが妥当？</param>
         /// <param name="mode">TemplateMatchModes</param>
         /// <returns></returns>
-        static public List<Rect> Matches(Mat matSource, Mat matTarget, double holdLine
+        static public List<Rect> Matches(Mat matSource, Mat matTarget, double holdLine = 0.9
             , TemplateMatchModes mode = TemplateMatchModes.CCoeffNormed)
         {
             List<Rect> result = new List<Rect>();
