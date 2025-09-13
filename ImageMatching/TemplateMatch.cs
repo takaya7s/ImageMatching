@@ -8,20 +8,6 @@ namespace ImageMatching
     public class TemplateMatch
     {
         /// <summary>
-        /// 元の行列と探す行列を比較し基準値を超える範囲があるか検査します。<br></br>
-        /// ※TemplateMatchModesの指定がないためCCoeffNormedとなります。
-        /// </summary>
-        /// <param name="matSource">元の行列</param>
-        /// <param name="matTarget">探す行列</param>
-        /// <param name="holdLine">マッチしたと判断する基準値（0.0～1.0）<br></br>
-        /// 使用する場面によるが0.7～0.9くらいが妥当？</param>
-        /// <returns></returns>
-        static public bool IsMatch(Mat matSource, Mat matTarget, double holdLine)
-        {
-            return Match(matSource, matTarget, holdLine, TemplateMatchModes.CCoeffNormed).Width >= 0;
-        }
-
-        /// <summary>
         /// 元の行列と探す行列を比較し基準値を超える範囲があるか検査します。
         /// </summary>
         /// <param name="matSource">元の行列</param>
@@ -30,32 +16,10 @@ namespace ImageMatching
         /// 使用する場面によるが0.7～0.9くらいが妥当？</param>
         /// <param name="mode">TemplateMatchModes</param>
         /// <returns></returns>
-        static public bool IsMatch(Mat matSource, Mat matTarget, double holdLine, TemplateMatchModes mode)
+        static public bool IsMatch(Mat matSource, Mat matTarget, double holdLine
+            , TemplateMatchModes mode = TemplateMatchModes.CCoeffNormed)
         {
             return Match(matSource, matTarget, holdLine, mode).Width >= 0;
-        }
-
-        /// <summary>
-        /// 元の行列と探す行列を比較し類似度を取得します。<br></br>
-        /// ※TemplateMatchModesの指定がないためCCoeffNormedとなります。
-        /// </summary>
-        /// <param name="matSource">元の行列</param>
-        /// <param name="matTarget">探す行列</param>
-        /// <returns>類似度</returns>
-        static public double Match(Mat matSource, Mat matTarget)
-        {
-            Mat matBuffer = new Mat();
-
-            // テンプレートマッチ
-            Cv2.MatchTemplate(matSource, matTarget, matBuffer, TemplateMatchModes.CCoeffNormed);
-
-            // 類似度が最大/最小となる画素の位置を調べる
-            OpenCvSharp.Point minLocation, maxLocation;
-            double minValue, maxValue;
-            Cv2.MinMaxLoc(matBuffer, out minValue, out maxValue, out minLocation, out maxLocation);
-            matBuffer.Dispose();
-
-            return maxValue;
         }
 
         /// <summary>
@@ -65,7 +29,8 @@ namespace ImageMatching
         /// <param name="matTarget">探す行列</param>
         /// <param name="mode">TemplateMatchModes</param>
         /// <returns>類似度</returns>
-        static public double Match(Mat matSource, Mat matTarget, TemplateMatchModes mode)
+        static public double Match(Mat matSource, Mat matTarget
+            , TemplateMatchModes mode = TemplateMatchModes.CCoeffNormed)
         {
             Mat matBuffer = new Mat();
 
@@ -83,21 +48,6 @@ namespace ImageMatching
 
         /// <summary>
         /// 元の行列と探す行列を比較し基準値を超える範囲を取得します。<br></br>
-        /// 基準値を超える範囲が見つからなかった場合は幅及び高さは-1を返します。<br></br>
-        /// ※TemplateMatchModesの指定がないためCCoeffNormedとなります。
-        /// </summary>
-        /// <param name="matSource">元の行列</param>
-        /// <param name="matTarget">探す行列</param>
-        /// <param name="holdLine">マッチしたと判断する基準値（0.0～1.0）<br></br>
-        /// 使用する場面によるが0.7～0.9くらいが妥当？</param>
-        /// <returns></returns>
-        static public Rect Match(Mat matSource, Mat matTarget, double holdLine)
-        {
-            return Match(matSource, matTarget, holdLine, TemplateMatchModes.CCoeffNormed);
-        }
-
-        /// <summary>
-        /// 元の行列と探す行列を比較し基準値を超える範囲を取得します。<br></br>
         /// 基準値を超える範囲が見つからなかった場合は幅及び高さは-1を返します。
         /// </summary>
         /// <param name="matSource">元の行列</param>
@@ -106,7 +56,8 @@ namespace ImageMatching
         /// 使用する場面によるが0.7～0.9くらいが妥当？</param>
         /// <param name="mode">TemplateMatchModes</param>
         /// <returns></returns>
-        static public Rect Match(Mat matSource, Mat matTarget, double holdLine, TemplateMatchModes mode)
+        static public Rect Match(Mat matSource, Mat matTarget, double holdLine
+            , TemplateMatchModes mode = TemplateMatchModes.CCoeffNormed)
         {
             Mat matBuffer = new Mat();
 
@@ -134,22 +85,6 @@ namespace ImageMatching
         /// <summary>
         /// 元の行列と探す行列を比較し基準値を超える範囲を取得します。<br></br>
         /// 複数見つかった場合はもっとも一致度の高い範囲を返します。<br></br>
-        /// 基準値を超える範囲が見つからなかった場合は幅及び高さは-1を返します。<br></br>
-        /// ※TemplateMatchModesの指定がないためCCoeffNormedとなります。
-        /// </summary>
-        /// <param name="matSource">元の行列</param>
-        /// <param name="matTarget">探す行列</param>
-        /// <param name="holdLine">マッチしたと判断する基準値（0.0～1.0）<br></br>
-        /// 使用する場面によるが0.7～0.9くらいが妥当？</param>
-        /// <returns></returns>
-        static public Rect Match(Mat matSource, Mat[] matTargets, double holdLine)
-        {
-            return Match(matSource, matTargets, holdLine, TemplateMatchModes.CCoeffNormed);
-        }
-
-        /// <summary>
-        /// 元の行列と探す行列を比較し基準値を超える範囲を取得します。<br></br>
-        /// 複数見つかった場合はもっとも一致度の高い範囲を返します。<br></br>
         /// 基準値を超える範囲が見つからなかった場合は幅及び高さは-1を返します。
         /// </summary>
         /// <param name="matSource">元の行列</param>
@@ -158,7 +93,8 @@ namespace ImageMatching
         /// 使用する場面によるが0.7～0.9くらいが妥当？</param>
         /// <param name="mode">TemplateMatchModes</param>
         /// <returns></returns>
-        static public Rect Match(Mat matSource, Mat[] matTargets, double holdLine, TemplateMatchModes mode)
+        static public Rect Match(Mat matSource, Mat[] matTargets, double holdLine
+            , TemplateMatchModes mode = TemplateMatchModes.CCoeffNormed)
         {
             Rect rect = new Rect(0, 0, -1, -1);
             double max = holdLine;
@@ -188,21 +124,6 @@ namespace ImageMatching
 
         /// <summary>
         /// 元の行列と探す行列を比較し基準値を超える範囲を全て取得します。<br></br>
-        /// 基準値を超える範囲が見つからなかった場合は空のリストを返します。<br></br>
-        /// ※TemplateMatchModesの指定がないためCCoeffNormedとなります。
-        /// </summary>
-        /// <param name="matSource">元の行列</param>
-        /// <param name="matTarget">探す行列</param>
-        /// <param name="holdLine">マッチしたと判断する基準値（0.0～1.0）<br></br>
-        /// 使用する場面によるが0.7～0.9くらいが妥当？</param>
-        /// <returns></returns>
-        static public List<Rect> Matches(Mat matSource, Mat matTarget, double holdLine)
-        {
-            return Matches(matSource, matTarget, holdLine, TemplateMatchModes.CCoeffNormed);
-        }
-
-        /// <summary>
-        /// 元の行列と探す行列を比較し基準値を超える範囲を全て取得します。<br></br>
         /// 基準値を超える範囲が見つからなかった場合は空のリストを返します。
         /// </summary>
         /// <param name="matSource">元の行列</param>
@@ -211,7 +132,8 @@ namespace ImageMatching
         /// 使用する場面によるが0.7～0.9くらいが妥当？</param>
         /// <param name="mode">TemplateMatchModes</param>
         /// <returns></returns>
-        static public List<Rect> Matches(Mat matSource, Mat matTarget, double holdLine, TemplateMatchModes mode)
+        static public List<Rect> Matches(Mat matSource, Mat matTarget, double holdLine
+            , TemplateMatchModes mode = TemplateMatchModes.CCoeffNormed)
         {
             List<Rect> result = new List<Rect>();
 

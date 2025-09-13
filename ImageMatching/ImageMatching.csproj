@@ -33,6 +33,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenCvSharp4.4.6.0.20220608\lib\netstandard2.0\OpenCvSharp.dll</HintPath>
@@ -86,7 +104,7 @@
     <Error Condition="!Exists('..\packages\OpenCvSharp4.runtime.win.4.6.0.20220608\build\netstandard\OpenCvSharp4.runtime.win.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OpenCvSharp4.runtime.win.4.6.0.20220608\build\netstandard\OpenCvSharp4.runtime.win.props'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>set lib_path=$(SolutionDir)..\_Libraries\$(TargetName)\v_03_00
+    <PostBuildEvent>set lib_path=$(SolutionDir)..\_Libraries\$(TargetName)\v_04_00
 md %25lib_path%25 &gt; NUL 2&gt;&amp;1
 copy $(TargetPath) %25lib_path%25\$(TargetFileName)</PostBuildEvent>
   </PropertyGroup>
