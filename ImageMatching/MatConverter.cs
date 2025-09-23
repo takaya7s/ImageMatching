@@ -39,22 +39,34 @@ namespace ImageMatching
 
         static public Mat ToMat(Bitmap src, PixelFormat format)
         {
-            return ToMat(ChangeFormat(src, format));
+            var mat = ToMat(ChangeFormat(src, format));
+            src.Dispose();
+            src = null;
+            return mat;
         }
 
         static public Mat ToMat(Image src, PixelFormat format)
         {
-            return ToMat(ChangeFormat(src, format));
+            var mat = ToMat(ChangeFormat(src, format));
+            src.Dispose();
+            src = null;
+            return mat;
         }
 
         static public Mat ToMat(Bitmap src)
         {
-            return BitmapConverter.ToMat(src);
+            var mat = BitmapConverter.ToMat(src);
+            src.Dispose();
+            src = null;
+            return mat;
         }
 
         static public Mat ToMat(Image src)
         {
-            return BitmapConverter.ToMat((Bitmap)src);
+            var mat = BitmapConverter.ToMat((Bitmap)src);
+            src.Dispose();
+            src = null;
+            return mat;
         }
     }
 }

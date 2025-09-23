@@ -78,6 +78,9 @@ namespace TestImageMatching
             // テンプレートマッチ
             Rect rect = TemplateMatch.Match(matSource, matTarget, holdLine);
 
+            Console.WriteLine("xy: " + rect.Left + ", " + rect.Top);
+            Console.WriteLine("wh: " + rect.Width + ", " + rect.Height);
+
             if (rect.Width < 0)
             {
                 // 見つからない
